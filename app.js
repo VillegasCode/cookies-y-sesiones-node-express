@@ -5,6 +5,7 @@ const app = express();
 
 //Importando mySQL session
 const mySQLStore = require('express-mysql-session');
+//Configurando nuestro acceso a la base de datos
 const options = {
     host: 'localhost',
     port: 3306,
@@ -31,7 +32,7 @@ app.use(session({
 //     saveUninitialized: true
 // }))
 
-
+//Estos datos que contiene "session." guardaremos en la cookie y en la base de datos
 app.get('/', (req, res)=>{
     req.session.usuario = 'Juan Perez';
     req.session.rol = 'Admin';
@@ -41,6 +42,7 @@ app.get('/', (req, res)=>{
             con rol <strong>${req.session.rol}</strong> ha visitado esta página ${req.session.visitas} veces`)
 })
 
+//Habilitamos el puerto para levantar el servidor
 app.listen(3000, (req, res)=>{
     console.log("SERVER UP!");
 });
