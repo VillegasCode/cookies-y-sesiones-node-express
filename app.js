@@ -9,9 +9,20 @@ const options = {
     host: 'localhost',
     port: 3306,
     user: 'root',
-    password: '',
+    password: 'admin7',
     database: 'prueba_session'
 }
+
+//Guardando la session en la base de datos con NODE y EXPRESS
+const sessionStore = new mySQLStore(options);
+//Creando una cookie para el usuario
+app.use(session({
+    key: 'cookie_usuario',
+    secret: '987654321',
+    store: sessionStore,
+    resave: false,
+    saveUninitialized: false
+}))
 
 //Vamos a guardar las sesiones ejemplo simple
 // app.use(session({
